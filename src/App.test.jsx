@@ -19,7 +19,7 @@ describe("App", () => {
     const button = screen.getByRole("button");
 
     // Initial state
-    expect(button.textContent).toContain("count is 0");
+    expect(button.textContent).toContain("Count is 0");
 
     // Click the button
     fireEvent.click(button);
