@@ -38,16 +38,16 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == '/ref/heads/main'
+    if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: production_files
+          name: production-files
           path: "./dist"
 
-      - name: Deploy to github pages
+      - name: Deploy to GitHub pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.TOKEN }}
