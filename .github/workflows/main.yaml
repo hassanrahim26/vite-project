@@ -10,29 +10,29 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: "18.x"
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run test
-      run: npm run test
+      - name: Run test
+        run: npm run test
 
-    - name: Build project
-      run: npm run build
+      - name: Build project
+        run: npm run build
 
-    - name: Upload production ready files
-      uses: actions/upload-artifact@v4
-      with:
-        name: production_files
-        path: "./dist"
+      - name: Upload production ready files
+        uses: actions/upload-artifact@v4
+        with:
+          name: production_files
+          path: "./dist"
 
   deploy:
     name: Deploy
@@ -40,15 +40,15 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == '/ref/heads/main'
 
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: production_files
-          path: "./dist"
+      steps:
+        - name: Download artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: production_files
+            path: "./dist"
 
-      - name: Deploy to github pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.TOKEN }}
-          publish_dir: "./dist"
+        - name: Deploy to github pages
+          uses: peaceiris/actions-gh-pages@v4
+          with:
+            github_token: ${{ secrets.TOKEN }}
+            publish_dir: "./dist"
