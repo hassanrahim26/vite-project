@@ -8,4 +8,5 @@ export default defineConfig({
     setupFiles: "./setup.js",
     globals: true,
   },
+  base: "/vite-project/",
 });
