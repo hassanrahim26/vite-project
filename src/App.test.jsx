@@ -25,6 +25,6 @@ describe("App", () => {
     fireEvent.click(button);
 
     // Count should increase by 1 as per your implementation
-    expect(button.textContent).toContain("count is 1");
+    expect(button.textContent).toContain("Count is 1");
   });
 });
